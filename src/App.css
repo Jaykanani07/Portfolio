@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* ================= ROOT & THEME (Always Dark) ================= */
 :root {
   --primary: #6c63ff;
@@ -9,17 +8,6 @@
 }
 
 /* Dark mode is always active — kept for compatibility */
-=======
-/* ================= ROOT & THEME ================= */
-:root {
-  --primary: #6c63ff;
-  --bg: #ffffff;
-  --bg-alt: #f6f7ff;
-  --text: #111;
-  --card: rgba(255, 255, 255, 0.65);
-}
-
->>>>>>> a1ca7f7c61deb8971e07ded44acf075827082bf3
 body.dark {
   --bg: #0f0f14;
   --bg-alt: #161622;
@@ -37,23 +25,11 @@ body.dark {
 
 /* ================= BODY ================= */
 body {
-<<<<<<< HEAD
   background: #0f0f14; /* fallback if canvas fails */
   color: var(--text);
 }
 
 /* subtle grid texture — sits above the ballpit canvas */
-=======
-  color: var(--text);
-  background:
-    radial-gradient(circle at top right, rgba(108, 99, 255, 0.25), transparent 60%),
-    linear-gradient(180deg, var(--bg), var(--bg-alt));
-  transition: background 0.4s, color 0.4s;
-  cursor: default;
-}
-
-/* subtle grid texture */
->>>>>>> a1ca7f7c61deb8971e07ded44acf075827082bf3
 body::after {
   content: "";
   position: fixed;
@@ -62,12 +38,8 @@ body::after {
     linear-gradient(rgba(108,99,255,0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(108,99,255,0.06) 1px, transparent 1px);
   background-size: 60px 60px;
-<<<<<<< HEAD
   pointer-events: none;
   z-index: 0; /* same level as ballpit, but it's just a grid overlay */
-=======
-  z-index: -1;
->>>>>>> a1ca7f7c61deb8971e07ded44acf075827082bf3
 }
 
 /* ================= NAVBAR ================= */
@@ -302,7 +274,6 @@ body::after {
 }
 
 /* ================= PROJECTS ================= */
-
 /* STACK GRID */
 .projects-stack-grid {
   display: grid;
@@ -433,70 +404,6 @@ body::after {
   to { opacity: 1 }
 }
 
-=======
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-}
-
-.project-card {
-  background: var(--card);
-  backdrop-filter: blur(14px);
-  padding: 28px;
-  border-radius: 22px;
-  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-}
-
-.project-card:active {
-  transform: scale(0.97);
-}
-
-.project-card h3 {
-  margin-bottom: 12px;
-  font-size: 1.2rem;
-}
-
-.project-card p {
-  margin-bottom: 10px;
-  line-height: 1.7;
-  opacity: 0.85;
-}
-
-.project-footer {
-  margin-top: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.project-footer span,
-.project-actions span {
-  font-size: 0.85rem;
-  opacity: 0.7;
-}
-
-.project-link {
-  background: var(--primary);
-  color: #fff;
-  padding: 8px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: opacity 0.2s;
-}
-
-.project-link:hover {
-  opacity: 0.85;
-}
-
-.project-actions {
-  margin-top: 12px;
-}
->>>>>>> a1ca7f7c61deb8971e07ded44acf075827082bf3
 
 /* ================= EDUCATION ================= */
 .education-grid {
@@ -573,14 +480,11 @@ body::after {
 }
 
 .contact-links a:hover {
-  opacity: 0.75;
-}
-
-footer {
-  text-align: center;
-  padding: 30px;
   opacity: 0.7;
 }
+
+
+
 /* ================= BACKGROUND BLOBS ================= */
 .bg-blobs {
   position: fixed;
@@ -676,7 +580,6 @@ footer {
     font-size: 2.5rem;
   }
 }
-<<<<<<< HEAD
 
 /* ================= BALLPIT BACKGROUND ================= */
 .app-wrapper {
@@ -689,8 +592,8 @@ footer {
 .background-layer {
   position: fixed;
   inset: 0;
-  z-index: -1;   /* change from 0 to -1 */
-  pointer-events: none;
+  z-index: 0;
+  pointer-events: none; /* Let clicks pass through to content */
 }
 
 /* Give the canvas itself pointer-events so Ballpit can track cursor */
@@ -708,5 +611,3 @@ footer {
   pointer-events: auto;
   background: transparent;
 }
-=======
->>>>>>> a1ca7f7c61deb8971e07ded44acf075827082bf3
