@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useEffect, useMemo } from "react";
 import useScrollReveal from "../hooks/useScrollReveal";
 import Stack from "./Stack";
@@ -96,9 +95,7 @@ useEffect(() => {
       />
     ));
   }, []);
-=======
-import React from 'react';
-import useScrollReveal from '../hooks/useScrollReveal';
+
 
 const projectsData = [
   {
@@ -135,14 +132,13 @@ const projectsData = [
 
 function Projects() {
   const ref = useScrollReveal();
->>>>>>> a1ca7f7c61deb8971e07ded44acf075827082bf3
+
 
   return (
     <section className="section reveal" id="projects" ref={ref}>
       <h2 className="section-title">Projects</h2>
       <div className="divider"></div>
 
-<<<<<<< HEAD
       <div style={{ width: 360, height: 360, margin: "0 auto" }}>
         <Stack
           randomRotation={false}
@@ -223,9 +219,8 @@ function Projects() {
           </div>
         ))}
       </div>
->>>>>>> a1ca7f7c61deb8971e07ded44acf075827082bf3
     </section>
   );
 }
-
+}
 export default Projects;

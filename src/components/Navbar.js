@@ -10,11 +10,10 @@ const navLinks = [
   { href: '#contact', label: 'Contact' },
 ];
 
-<<<<<<< HEAD
+
 function Navbar() {
-=======
 function Navbar({ darkMode, toggleTheme }) {
->>>>>>> a1ca7f7c61deb8971e07ded44acf075827082bf3
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
@@ -56,12 +55,12 @@ function Navbar({ darkMode, toggleTheme }) {
       </nav>
 
       <div className="nav-actions">
-<<<<<<< HEAD
-=======
+
+
         <button id="themeToggle" onClick={toggleTheme} aria-label="Toggle theme">
           {darkMode ? '🌙' : '☀️'}
         </button>
->>>>>>> a1ca7f7c61deb8971e07ded44acf075827082bf3
+
         <button
           className="hamburger"
           id="hamburger"
@@ -76,5 +75,5 @@ function Navbar({ darkMode, toggleTheme }) {
     </header>
   );
 }
-
+}
 export default Navbar;
