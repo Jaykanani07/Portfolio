@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import useScrollReveal from "../hooks/useScrollReveal";
 import Stack from "./Stack";
 
@@ -9,13 +9,13 @@ const projectsData = [
     image: `${process.env.PUBLIC_URL}/images/attendance.png`,
     tech: ["PHP", "MySQL", "JavaScript"],
     details: `
-The Expense Management Tool is a full-stack web application developed to simplify personal and organizational financial tracking.
-It features secure authentication using Google OAuth, category-based expense management, and a dynamic dashboard with real-time analytics.
-The backend was built using Node.js and Express with MongoDB for structured data storage and scalability.
+This web-based academic system was built using PHP and MySQL to manage structured student records efficiently.
+It includes full CRUD operations for attendance tracking, subject management, and student record updates.
 
-I focused on clean API architecture, protected routes, and optimized database queries for performance efficiency.
+I designed the backend architecture to ensure clean database relations and optimized queries.
+The frontend was developed with responsive layouts for smooth usability across devices.
 
-The application is fully responsive and designed with modern UX principles to ensure intuitive financial management.
+The system improves data accuracy, reduces paperwork, and provides centralized academic management.
     `,
   },
   {
@@ -24,13 +24,13 @@ The application is fully responsive and designed with modern UX principles to en
     image: `${process.env.PUBLIC_URL}/images/IOT-Biometric-Fingerprint-Attend.png`,
     tech: ["C++", "Firebase", "IoT Concepts"],
     details: `
-This IoT-based attendance system was developed to automate biometric tracking and eliminate manual attendance errors.
-The project integrates fingerprint sensor hardware with C++ microcontroller programming for real-time biometric capture.
+This IoT-based system automates biometric attendance using fingerprint authentication hardware.
+I programmed the microcontroller in C++ for real-time biometric capture and validation.
 
-Firebase was used for centralized cloud-based storage and synchronization of attendance data.
+Firebase was integrated for cloud-based storage and live synchronization.
+The system minimizes manual errors and enhances attendance accuracy.
 
-The system improves accuracy, minimizes fraud, and provides efficient real-time monitoring capabilities.
-This project strengthened my understanding of hardware-software integration, embedded systems logic, and real-time data handling.
+This project strengthened my embedded systems, hardware integration, and real-time data handling skills.
     `,
   },
   {
@@ -39,14 +39,13 @@ This project strengthened my understanding of hardware-software integration, emb
     image: `${process.env.PUBLIC_URL}/images/EMT.png`,
     tech: ["React", "Node.js", "Express", "MongoDB", "Google Auth"],
     details: `
-The Expense Management Tool is a full-stack web application developed to simplify personal and organizational financial tracking.
+The Expense Management Tool is a full-stack web application developed for structured financial tracking.
+It includes secure Google OAuth authentication and protected API routes.
 
-It features secure authentication using Google OAuth, category-based expense management, and a dynamic dashboard with real-time analytics.
-The backend was built using Node.js and Express with MongoDB for structured data storage and scalability.
+Users can categorize expenses, track spending trends, and view dashboard analytics.
+The backend uses Node.js and Express with MongoDB for scalable data storage.
 
-I focused on clean API architecture, protected routes, and optimized database queries for performance efficiency.
-
-The application is fully responsive and designed with modern UX principles to ensure intuitive financial management.
+The UI is responsive and built with modern UX principles for intuitive financial management.
     `,
     liveLink: "https://expense-tool-orpin.vercel.app/",
   },
@@ -56,13 +55,13 @@ The application is fully responsive and designed with modern UX principles to en
     image: `${process.env.PUBLIC_URL}/images/F1.png`,
     tech: ["HTML", "CSS", "JavaScript"],
     details: `
-F1 Legends is a visually immersive multi-page motorsport website built to showcase the evolution of Formula 1 through structured storytelling and modern UI principles.
-The platform includes dedicated sections for legendary drivers, iconic teams, historic rivalries, and winning moments.
+F1 Legends is a visually immersive multi-page motorsport website.
+It features structured storytelling about legendary drivers, teams, and iconic rivalries.
 
-I implemented smooth scroll animations, interactive content layouts, and responsive design to ensure seamless viewing across devices.
-Special attention was given to visual hierarchy, layout consistency, and engaging user experience.
+I implemented smooth scroll animations and responsive layouts.
+The design focuses on strong visual hierarchy and performance optimization.
 
-The project demonstrates strong front-end architecture, clean CSS structuring, and performance-optimized asset handling.
+This project demonstrates strong front-end structuring and UI consistency.
     `,
     liveLink: "https://iridescent-elf-9a4025.netlify.app/",
   },
@@ -76,20 +75,8 @@ function Projects() {
     const handleEsc = (e) => {
       if (e.key === "Escape") setActiveProject(null);
     };
-
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
-  }, []);
-
-  const cards = useMemo(() => {
-    return projectsData.map((project, index) => (
-      <img
-        key={index}
-        src={project.image}
-        alt={project.title}
-        className="card-image"
-      />
-    ));
   }, []);
 
   return (
@@ -97,12 +84,16 @@ function Projects() {
       <h2 className="section-title">Projects</h2>
       <div className="divider"></div>
 
-      <div style={{ width: 360, height: 360, margin: "0 auto" }}>
+      <div className="projects-stack-wrapper">
         <Stack
-          randomRotation={false}
-          sensitivity={150}
-          sendToBackOnClick={true}
-          cards={cards}
+          cards={projectsData.map((project, index) => (
+            <img
+              key={index}
+              src={project.image}
+              alt={project.title}
+              className="card-image"
+            />
+          ))}
           onCardClick={(index) => setActiveProject(projectsData[index])}
         />
       </div>
@@ -125,7 +116,9 @@ function Projects() {
 
             <h3>{activeProject.title}</h3>
             <p className="modal-tagline">{activeProject.tagline}</p>
-            <p className="modal-description">{activeProject.details}</p>
+            <p className="modal-description" style={{ whiteSpace: "pre-line" }}>
+              {activeProject.details}
+            </p>
 
             <div className="project-tech">
               {activeProject.tech.map((tech, i) => (

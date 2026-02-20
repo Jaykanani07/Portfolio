@@ -9,7 +9,6 @@ import {
   Vector2 as r,
   Vector3 as a,
   MeshPhysicalMaterial as c,
-  ShaderChunk as h,
   Color as l,
   Object3D as m,
   InstancedMesh as d,
@@ -519,60 +518,38 @@ class W {
   }
 }
 
-class Y extends c {
-  constructor(e) {
-    super(e);
-    this.uniforms = {
-      thicknessDistortion: { value: 0.1 },
-      thicknessAmbient: { value: 0 },
-      thicknessAttenuation: { value: 0.1 },
-      thicknessPower: { value: 2 },
-      thicknessScale: { value: 10 }
-    };
-    this.defines.USE_UV = '';
-    this.onBeforeCompile = e => {
-      Object.assign(e.uniforms, this.uniforms);
-      e.fragmentShader =
-        '\n        uniform float thicknessPower;\n        uniform float thicknessScale;\n        uniform float thicknessDistortion;\n        uniform float thicknessAmbient;\n        uniform float thicknessAttenuation;\n      ' +
-        e.fragmentShader;
-      e.fragmentShader = e.fragmentShader.replace(
-        'void main() {',
-        '\n        void RE_Direct_Scattering(const in IncidentLight directLight, const in vec2 uv, const in vec3 geometryPosition, const in vec3 geometryNormal, const in vec3 geometryViewDir, const in vec3 geometryClearcoatNormal, inout ReflectedLight reflectedLight) {\n          vec3 scatteringHalf = normalize(directLight.direction + (geometryNormal * thicknessDistortion));\n          float scatteringDot = pow(saturate(dot(geometryViewDir, -scatteringHalf)), thicknessPower) * thicknessScale;\n          #ifdef USE_COLOR\n            vec3 scatteringIllu = (scatteringDot + thicknessAmbient) * vColor;\n          #else\n            vec3 scatteringIllu = (scatteringDot + thicknessAmbient) * diffuse;\n          #endif\n          reflectedLight.directDiffuse += scatteringIllu * thicknessAttenuation * directLight.color;\n        }\n\n        void main() {\n      '
-      );
-      const t = h.lights_fragment_begin.replaceAll(
-        'RE_Direct( directLight, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );',
-        '\n          RE_Direct( directLight, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, material, reflectedLight );\n          RE_Direct_Scattering(directLight, vUv, geometryPosition, geometryNormal, geometryViewDir, geometryClearcoatNormal, reflectedLight);\n        '
-      );
-      e.fragmentShader = e.fragmentShader.replace('#include <lights_fragment_begin>', t);
-      if (this.onBeforeCompile2) this.onBeforeCompile2(e);
-    };
-  }
-}
+const isMobile = window.innerWidth <= 768;
 
 const X = {
-  count: 200,
-  colors: [0x6c63ff, 0x8f87ff, 0x4e47ff],
+  count: isMobile ? 50 : 80,
+
+  colors: [0, 0, 0],
   ambientColor: 16777215,
   ambientIntensity: 1,
-  lightIntensity: 200,
+  lightIntensity: isMobile ? 120 : 160,
+
   materialParams: {
     metalness: 0.5,
     roughness: 0.5,
     clearcoat: 1,
     clearcoatRoughness: 0.15
   },
-  minSize: 0.5,
-  maxSize: 1,
-  size0: 1,
-  gravity: 0.5,
+
+  minSize: isMobile ? 0.18 : 0.30,
+  maxSize: isMobile ? 0.45 : 0.9,
+  size0: isMobile ? 0.3 : 0.8,
+
+  gravity: isMobile ? 0.25 : 0.30,
   friction: 0.9975,
   wallBounce: 0.95,
-  maxVelocity: 0.15,
+  maxVelocity: isMobile ? 0.09 : 0.12,
+
   maxX: 5,
   maxY: 5,
   maxZ: 2,
+
   controlSphere0: false,
-  followCursor: true
+  followCursor: false
 };
 
 const U = new m();
@@ -583,7 +560,13 @@ class Z extends d {
     const s = new z();
     const n = new p(e, 0.04).fromScene(s).texture;
     const o = new g();
-    const r = new Y({ envMap: n, ...i.materialParams });
+    const r = new c({
+                        envMap: n,
+                        metalness: i.materialParams.metalness,
+                        roughness: i.materialParams.roughness,
+                        clearcoat: i.materialParams.clearcoat,
+                        clearcoatRoughness: i.materialParams.clearcoatRoughness
+                    });
     r.envMapRotation.x = -Math.PI / 2;
     super(o, r, i.count);
     this.config = i;
@@ -638,9 +621,9 @@ class Z extends d {
     this.physics.update(e);
     for (let idx = 0; idx < this.count; idx++) {
       U.position.fromArray(this.physics.positionData, 3 * idx);
-      if (idx === 0 && this.config.followCursor === false) {
-        U.scale.setScalar(0);
-      } else {
+      if (idx === 0) {
+  U.scale.setScalar(0);
+} else {
         U.scale.setScalar(this.physics.sizeData[idx]);
       }
       U.updateMatrix();

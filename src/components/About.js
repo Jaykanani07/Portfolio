@@ -10,10 +10,11 @@ function About() {
       <div className="divider"></div>
 
       <p className="section-text">
-        I'm Jay Kanani, a Frontend Developer and IT Engineering student
-        currently doing an internship at Webmobi360. I enjoy building
-        clean, modern and animated web interfaces with a strong focus
-        on UI/UX and performance.
+I build modern web experiences that feel premium, responsive, and alive.
+
+As a Frontend Developer, I specialize in crafting visually rich, high-performance applications using React and modern UI technologies. My work focuses on smooth animations, scalable architecture, and intuitive user flows.
+
+I don’t just build websites — I engineer digital experiences designed to convert, engage, and perform.
       </p>
     </section>
   );

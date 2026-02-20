@@ -1,42 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import Ballpit from "./components/Ballpit";
 
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Education from './components/Education';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Education from "./components/Education";
+import Projects from "./components/Projects";
+import Experience from "./components/Experience";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
-import './App.css';
+import "./App.css";
 
 function App() {
-  // Always force dark mode
   useEffect(() => {
-    document.body.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
+    document.body.classList.add("dark");
   }, []);
 
   return (
-    <div className="app-wrapper">
-
-      {/* 🔥 BALLPIT BACKGROUND */}
-<div className="background-layer">
+    <>
+      <div className="ballpit-bg">
 <Ballpit
-  count={160}
-  gravity={0.6}
-  friction={0.995}
-  wallBounce={0.95}
-  followCursor={true}
+  count={80}
+  gravity={0.25}
+  friction={0.997}
+  wallBounce={0.9}
+  followCursor={false}
   colors={[0x6c63ff, 0x9f94ff, 0xbab4ff]}
 />
-</div>
+      </div>
 
-      {/* 🌐 WEBSITE CONTENT */}
-      <div className="content-layer">
+      <div className="app-content">
         <Navbar />
         <Hero />
         <About />
@@ -47,8 +42,7 @@ function App() {
         <Contact />
         <Footer />
       </div>
-
-    </div>
+    </>
   );
 }
 
