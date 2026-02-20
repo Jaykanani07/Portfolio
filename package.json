@@ -8,11 +8,17 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD
     "motion": "^12.34.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-scripts": "^5.0.1",
     "three": "^0.183.0",
+=======
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-scripts": "5.0.1",
+>>>>>>> a1ca7f7c61deb8971e07ded44acf075827082bf3
     "web-vitals": "^2.1.4"
   },
   "scripts": {
