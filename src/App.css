@@ -553,7 +553,6 @@ body::after {
 }
 
 /* ================= CONTACT & FOOTER ================= */
-<<<<<<< HEAD
 .contact-wrapper {
   max-width: 500px;
 }
@@ -570,23 +569,10 @@ body::after {
   font-size: 1rem;
   font-weight: 500;
   color: var(--primary);
-=======
-.contact-links a {
-  margin-right: 20px;
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 500;
->>>>>>> a1ca7f7c61deb8971e07ded44acf075827082bf3
   transition: opacity 0.2s;
 }
 
 .contact-links a:hover {
-<<<<<<< HEAD
-  opacity: 0.7;
-}
-
-
-=======
   opacity: 0.75;
 }
 
@@ -595,8 +581,6 @@ footer {
   padding: 30px;
   opacity: 0.7;
 }
->>>>>>> a1ca7f7c61deb8971e07ded44acf075827082bf3
-
 /* ================= BACKGROUND BLOBS ================= */
 .bg-blobs {
   position: fixed;
