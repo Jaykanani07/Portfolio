@@ -14,6 +14,10 @@ import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
+  const isTouchDevice =
+    typeof window !== "undefined" &&
+    ("ontouchstart" in window || navigator.maxTouchPoints > 0);
+
   useEffect(() => {
     document.body.classList.add("dark");
   }, []);
@@ -26,7 +30,7 @@ function App() {
   gravity={0.25}
   friction={0.997}
   wallBounce={0.9}
-  followCursor={false}
+  followCursor={isTouchDevice}
   colors={[0x6c63ff, 0x9f94ff, 0xbab4ff]}
 />
       </div>

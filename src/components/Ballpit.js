@@ -518,6 +518,8 @@ class W {
   }
 }
 
+
+
 const isMobile = window.innerWidth <= 768;
 
 const X = {
@@ -549,8 +551,11 @@ const X = {
   maxZ: 2,
 
   controlSphere0: false,
-  followCursor: false
+  followCursor: true
 };
+
+
+
 
 const U = new m();
 
