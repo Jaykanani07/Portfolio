@@ -253,8 +253,8 @@ function S(e) {
         document.body.addEventListener('pointerleave', L);
         document.body.addEventListener('click', C);
 
-        document.body.addEventListener('touchstart', TouchStart, { passive: false });
-        document.body.addEventListener('touchmove', TouchMove, { passive: false });
+document.body.addEventListener('touchstart', TouchStart, { passive: true });
+document.body.addEventListener('touchmove', TouchMove, { passive: true });
         document.body.addEventListener('touchend', TouchEnd, { passive: false });
         document.body.addEventListener('touchcancel', TouchEnd, { passive: false });
 
@@ -345,7 +345,6 @@ function TouchStart(e) {
 
 function TouchMove(e) {
   if (e.touches.length > 0) {
-    e.preventDefault();
     A.x = e.touches[0].clientX;
     A.y = e.touches[0].clientY;
 
