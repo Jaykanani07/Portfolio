@@ -325,7 +325,6 @@ function L() {
 
 function TouchStart(e) {
   if (e.touches.length > 0) {
-    e.preventDefault();
     A.x = e.touches[0].clientX;
     A.y = e.touches[0].clientY;
 
@@ -657,7 +656,7 @@ function createBallpit(e, t = {}) {
   const r = new a();
   let c = false;
 
-  e.style.touchAction = 'none';
+  e.style.touchAction = 'pan-y';
   e.style.userSelect = 'none';
   e.style.webkitUserSelect = 'none';
 
